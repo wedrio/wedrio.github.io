@@ -57,17 +57,29 @@ html >::-webkit-scrollbar-thumb:hover {
   background: #ff5722;
 }
 body {
-  background-color: #f4f4f4;
-  text-rendering: optimizelegibility;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  line-height: 1.65;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
+  cursor: url("https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.6/images/mouse.cur"), auto;
+  background-color: ;
 }
+body #background-color: $color-site,
+body text-rendering: optimizelegibility,
+body -webkit-tap-highlight-color: rgba(0,
+body 0,
+body 0),
+body line-height: $lineheight,
+body -webkit-text-size-adjust: 100%,
+body -ms-text-size-adjust: 100%,
 body.modal-active {
   overflow: hidden;
 }
 @media screen and (max-width: 680px) {
+  body #background-color: $color-site,
+  body text-rendering: optimizelegibility,
+  body -webkit-tap-highlight-color: rgba(0,
+  body 0,
+  body 0),
+  body line-height: $lineheight,
+  body -webkit-text-size-adjust: 100%,
+  body -ms-text-size-adjust: 100%,
   body.modal-active {
     position: fixed;
     top: 0;
