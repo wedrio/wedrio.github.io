@@ -1,0 +1,90 @@
+<% if (theme.footer) { %>
+  <%
+  var layout = theme.footer.layout;
+  if (config.theme_config && config.theme_config.footer && config.theme_config.footer.layout) {
+    layout = config.theme_config.footer.layout;
+  }
+  %>
+  <footer class="clearfix">
+    <br><br>
+    <% layout.forEach(function(item){ %>
+      <% if (item == 'social') { %>
+        <br>
+        <div class="social-wrapper">
+          <% (theme.footer.social||[]).forEach(function(value){ %>
+            <% if (value.url && value.icon) { %>
+              <a href="<%= url_for(value.url) %>"
+                class="social <%- value.icon %> flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            <%}%>
+          <%})%>
+        </div>
+      <% } else if (item == 'aplayer') { %>
+        <div class="aplayer-container">
+          <%- partial('../_third-party/aplayer', {post: null, where: 'footer'}) %>
+        </div>
+      <% } else if (item == 'license') { %>
+        <div><%- markdown(__('footer.license')) %></div>
+      <% } else if (item == 'info') { %>
+        <%- __('footer.use') %>
+        <a href="<%- theme.info.docs %>" target="_blank" class="codename"><%- theme.info.name %></a>
+        <%- __('footer.theme') %><% if (theme.plugins.busuanzi) { %><%- __('symbol.comma') %><%- __('footer.total_views') %>
+          <span id="busuanzi_value_site_pv"><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden="true"></i></span>
+          <%- __('footer.times') %>
+        <% } %>
+      <% } else if (item == 'copyright') { %>
+        <div class='copyright'>
+          <span id="sitetime"></span>
+          <i class="fas fa-chart-area"></i>
+          <span class="post-count">字数统计：<%= totalcount(site) %></span>
+        <%- markdown(theme.footer.copyright) %>
+        </div>
+      <% } else { %>
+        <% if (item in theme.footer) { %>
+          <div><%- markdown(theme.footer[item]) %></div>
+        <% } %>
+      <% } %>
+    <% }) %>
+  </footer>
+<% } %>
+<script language=javascript>
+	function siteTime(){
+		window.setTimeout("siteTime()", 1000);
+		var seconds = 1000;
+		var minutes = seconds * 60;
+		var hours = minutes * 60;
+		var days = hours * 24;
+		var years = days * 365;
+		var today = new Date();
+		var todayYear = today.getFullYear();
+		var todayMonth = today.getMonth()+1;
+		var todayDate = today.getDate();
+		var todayHour = today.getHours();
+		var todayMinute = today.getMinutes();
+		var todaySecond = today.getSeconds();
+		/* 
+		Date.UTC() -- 返回date对象距世界标准时间(UTC)1970年1月1日午夜之间的毫秒数(时间戳)
+		year - 作为date对象的年份，为4位年份值
+		month - 0-11之间的整数，做为date对象的月份
+		day - 1-31之间的整数，做为date对象的天数
+		hours - 0(午夜24点)-23之间的整数，做为date对象的小时数
+		minutes - 0-59之间的整数，做为date对象的分钟数
+		seconds - 0-59之间的整数，做为date对象的秒数
+		microseconds - 0-999之间的整数，做为date对象的毫秒数
+        */
+		var t1 = Date.UTC(2020,05,11,18,00,00); //北京时间2020-05-11 18:00:00
+		var t2 = Date.UTC(todayYear,todayMonth,todayDate,todayHour,todayMinute,todaySecond);
+		var diff = t2-t1;
+		var diffYears = Math.floor(diff/years);
+		var diffDays = Math.floor((diff/days)-diffYears*365);
+		var diffHours = Math.floor((diff-(diffYears*365+diffDays)*days)/hours);
+		var diffMinutes = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours)/minutes);
+		var diffSeconds = Math.floor((diff-(diffYears*365+diffDays)*days-diffHours*hours-diffMinutes*minutes)/seconds);
+		document.getElementById("sitetime").innerHTML=" 已运行 "+/*diffYears+" 年 "+*/diffDays+" 天 "+diffHours+" 小时 "+diffMinutes+" 分钟 "+diffSeconds+" 秒";
+	}
+	siteTime();
+</script>
+<script>setLoadingBarProgress(80);</script>
+

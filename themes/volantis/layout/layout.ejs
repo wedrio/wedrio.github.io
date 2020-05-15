@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<%- partial('_partial/head') %>
+<!-- 雪花特效 -->
+<!--浏览器搞笑标题-->
+<script type="text/javascript" src="/js/FunnyTitle.js"></script>
+<body>
+  <%- partial('_partial/cover') %>
+  <div class="l_body<%- page.cover ? '' : ' nocover' %>">
+    <div class='body-wrapper'>
+      <%- body %>
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  <%- partial('_partial/scripts') %>
+  <script>setLoadingBarProgress(100);</script>
+</body>
+<script type="text/javascript" src="/js/snow.js"></script>
+<script type="text/javascript" src="/js/cursor-effects.js"></script>
+</html>
