@@ -5,11 +5,11 @@
 # Site
 title: Mr.Li's Blog
 subtitle: ''
-description: ''
+description: '一个简简单单的个人博客'
 keywords:
 author: Mr.Li
 language: en
-timezone: ''
+timezone: 'Asia/Shanghai'
 
 # URL
 ## 如果您的站点放在子目录中, set url as 'http://yoursite.com/child' and root as '/child/'
