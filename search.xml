@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Python数据可视化项目</title>
+      <link href="/2020/05/21/Python%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A1%B9%E7%9B%AE/"/>
+      <url>/2020/05/21/Python%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A1%B9%E7%9B%AE/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>前提：安装matplotlib</p></blockquote><a id="more"></a><h2 id="绘制简单的折线图"><a href="#绘制简单的折线图" class="headerlink" title="绘制简单的折线图"></a>绘制简单的折线图</h2><h3 id="使用plot-绘制"><a href="#使用plot-绘制" class="headerlink" title="使用plot()绘制"></a>使用plot()绘制</h3><pre><code>例：import matplotlib.pyplot as plt    input_values = [1,2,3,4,5]    squares = [1,4,9,16,25]    plt.plot(input_values,squares,linewidth=5)    #设置图标标题，并给坐标轴加上标签    plt.title(&quot;Square Numbers&quot;, fontsize=24)    plt.xlabel(&quot;Value&quot;, fontsize=14)    plt.ylabel(&quot;Square of Value&quot;, fontsize=14)    #设置刻度标记的大小    plt.tick_params(axis=&apos;both&apos;,labelsize=14)    plt.show()</code></pre><p>linewidth决定了plot()绘制线条的粗细。函数tick_params()设置了刻度的样式。<br><img src="https://cdn.jsdelivr.net/gh/wedrio/ImageHosting/wedrio-pic/plot_01.png" alt></p><h3 id="使用scatter-绘制散点图并设置其样式"><a href="#使用scatter-绘制散点图并设置其样式" class="headerlink" title="使用scatter()绘制散点图并设置其样式"></a>使用scatter()绘制散点图并设置其样式</h3><p><strong>绘制单个点</strong></p><pre><code>import matplotlib.pyplot as plt  plt.scatter(2, 4, s=200)  #设置图表标题并给坐标轴加上标签  plt.title(&quot;Square Numbers&quot;, fontsize=24)  plt.xlabel(&quot;Value&quot;, fontsize=14)  plt.ylabel(&quot;Square of Value&quot;, fontsize=14)  # 设置刻度标记的大小  plt.tick_params(axis=&apos;both&apos;, which=&apos;major&apos;, labelsize=14)  plt.show()</code></pre><p>s=表示点的大小<br><strong>绘制多个点</strong></p><pre><code>import matplotlib.pyplot as plt  x_values = [1, 2, 3, 4, 5] y_values = [1, 4, 9, 16, 25]plt.scatter(x_values,y_values,s=100)  #设置图表标题并给坐标轴加上标签  plt.title(&quot;Square Numbers&quot;, fontsize=24)  plt.xlabel(&quot;Value&quot;, fontsize=14)  plt.ylabel(&quot;Square of Value&quot;, fontsize=14) plt.show()</code></pre><p><img src="https://cdn.jsdelivr.net/gh/wedrio/ImageHosting/wedrio-pic/scatter_1.png" alt><br><strong>自动计算数据</strong><br>利用list(range(x,y))生成区间的数<br>然后赋值给x轴，再遍历这个列表并给y轴赋值<br>再利用axis()给坐标</p><pre><code>例子：x_values = list(range(1,10001))     y_values = [x**2 for x in x_values]     plt.axis([0,1100,0,1100000])</code></pre><p><strong>删除数据点的轮廓</strong><br>调用scatter()时传递实参edgecolor=’none’<br><strong>自定义颜色</strong><br>可向scatter()传递参数c=’’<br>也可以使用RGB颜色模式自定义颜色，可传递参数c=(0,0,0) ，并将其设置为一个元组，其中包含三个0~1之间的小数值，它们分别表示红色、绿色和蓝色分量。<br><strong>使用颜色映射</strong><br>利用y值设置颜色c=y-values,cmap=plt.cm.Blues<br>python中所有的颜色映射，<a href="http://matplotlib.org/" target="_blank" rel="noopener">http://matplotlib.org/</a>,单击Examples，向下滚动到Color Examples，再单击colormaps_reference。  </p><h3 id="自动保存图表"><a href="#自动保存图表" class="headerlink" title="自动保存图表"></a>自动保存图表</h3><p>plt.savegfig(‘xxx.png’,bbox_inches=’tight’)<br>第二个实参指定将图表多余的空白区域裁剪掉，保留则省略。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 大数据 </tag>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>HTML+CSS自学笔记</title>
       <link href="/2020/05/14/HTML-CSS%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/"/>
       <url>/2020/05/14/HTML-CSS%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/</url>

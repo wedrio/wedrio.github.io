@@ -5,8 +5,6 @@
   <!-- SEO相关 -->
   
     
-      <meta name="robots" content="noindex,follow">
-    
   
   <!-- 渲染优化 -->
   <meta name="renderer" content="webkit">
@@ -18,8 +16,14 @@
 
   <!-- 页面元数据 -->
   
-    <title>Tag: 页面 - Mr.Li&#39;s Blog</title>
+    <title>Python数据可视化项目 - Mr.Li&#39;s Blog</title>
   
+    <meta name="keywords" content="大数据,python">
+  
+  
+    <meta name="description" content="
+前提：安装matplotlib
+">
   
 
   <!-- feed -->
@@ -333,25 +337,12 @@
     <div class='body-wrapper'>
       
 
-
 <div class='l_main'>
   
-    
-      
-  <section class="post-list ">
-    
-      
-        
-          
-        
-      
-    
-    
-      
-        
-          <div class='post-wrapper'>
-            <article class="post white-box shadow floatable reveal ">
+
   
+    <article id="post" class="post white-box reveal shadow floatable article-type-post" itemscope itemprop="blogPost">
+      
 
 
   <section class='meta'>
@@ -361,11 +352,11 @@
       <div class="meta" id="header-meta">
         
           
-  <h2 class="title">
-    <a href="/2020/05/14/HTML-CSS%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/">
-      HTML+CSS自学笔记
+  <h1 class="title">
+    <a href="/2020/05/21/Python%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A1%B9%E7%9B%AE/">
+      Python数据可视化项目
     </a>
-  </h2>
+  </h1>
 
 
         
@@ -388,9 +379,9 @@
               
   
   <div class='new-meta-item category'>
-    <a href='/categories/web%E5%89%8D%E7%AB%AF/' rel="nofollow">
+    <a href='/categories/python/' rel="nofollow">
       <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
-      <p>web前端</p>
+      <p>python</p>
     </a>
   </div>
 
@@ -401,7 +392,7 @@
               <div class="new-meta-item date">
   <a class='notlink'>
     <i class="fas fa-calendar-alt fa-fw" aria-hidden="true"></i>
-    <p>发布于：May 14, 2020</p>
+    <p>发布于：May 21, 2020</p>
   </a>
 </div>
 
@@ -419,26 +410,16 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>3.7k words</p>
+      <p>530 words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>14 min</p>
+      <p>2 min</p>
     </a>
   </div>
 
-
-            
-          
-            
-              <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-19T19:11:43+08:00">
-  <a class='notlink'>
-    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 19, 2020</p>
-  </a>
-</div>
 
             
           
@@ -451,157 +432,252 @@
   </section>
 
 
-  <section class="article typo">
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>&emsp;&emsp;前面空了一部分没有做笔记，太懒了，后面补出来。</p>
-<h2 id="strong与b、em与i？"><a href="#strong与b、em与i？" class="headerlink" title="strong与b、em与i？"></a>strong与b、em与i？</h2><p>&emsp;&emsp;表现形态都是文本加粗和斜体<br>&emsp;&emsp;strong和em是具备语义化的，而b和i是不具备语义化的。</p>
-      
-    </div>
-    
-      
-        <div class="button readmore">
-          <a href="/2020/05/14/HTML-CSS%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/">
-            Read More <i class="fas fa-chevron-right"></i>
-          </a>
-        </div>
-      
-    
-  </section>
-</article>
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <blockquote>
+<p>前提：安装matplotlib</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="绘制简单的折线图"><a href="#绘制简单的折线图" class="headerlink" title="绘制简单的折线图"></a>绘制简单的折线图</h2><h3 id="使用plot-绘制"><a href="#使用plot-绘制" class="headerlink" title="使用plot()绘制"></a>使用plot()绘制</h3><pre><code>例：import matplotlib.pyplot as plt
+    input_values = [1,2,3,4,5]
+    squares = [1,4,9,16,25]
+    plt.plot(input_values,squares,linewidth=5)
 
-          </div>
+    #设置图标标题，并给坐标轴加上标签
+    plt.title(&quot;Square Numbers&quot;, fontsize=24)
+    plt.xlabel(&quot;Value&quot;, fontsize=14)
+    plt.ylabel(&quot;Square of Value&quot;, fontsize=14)
+
+    #设置刻度标记的大小
+    plt.tick_params(axis=&apos;both&apos;,labelsize=14)
+
+    plt.show()</code></pre><p>linewidth决定了plot()绘制线条的粗细。函数tick_params()设置了刻度的样式。<br><img src="https://cdn.jsdelivr.net/gh/wedrio/ImageHosting/wedrio-pic/plot_01.png" alt></p>
+<h3 id="使用scatter-绘制散点图并设置其样式"><a href="#使用scatter-绘制散点图并设置其样式" class="headerlink" title="使用scatter()绘制散点图并设置其样式"></a>使用scatter()绘制散点图并设置其样式</h3><p><strong>绘制单个点</strong></p>
+<pre><code>import matplotlib.pyplot as plt  
+plt.scatter(2, 4, s=200)  
+#设置图表标题并给坐标轴加上标签  
+plt.title(&quot;Square Numbers&quot;, fontsize=24)  plt.xlabel(&quot;Value&quot;, fontsize=14)  
+plt.ylabel(&quot;Square of Value&quot;, fontsize=14)  
+# 设置刻度标记的大小  
+plt.tick_params(axis=&apos;both&apos;, which=&apos;major&apos;, labelsize=14)  
+plt.show()</code></pre><p>s=表示点的大小<br><strong>绘制多个点</strong></p>
+<pre><code>import matplotlib.pyplot as plt  
+x_values = [1, 2, 3, 4, 5] 
+y_values = [1, 4, 9, 16, 25]
+plt.scatter(x_values,y_values,s=100)  
+
+#设置图表标题并给坐标轴加上标签  
+plt.title(&quot;Square Numbers&quot;, fontsize=24)  plt.xlabel(&quot;Value&quot;, fontsize=14)  
+plt.ylabel(&quot;Square of Value&quot;, fontsize=14) 
+
+plt.show()</code></pre><p><img src="https://cdn.jsdelivr.net/gh/wedrio/ImageHosting/wedrio-pic/scatter_1.png" alt><br><strong>自动计算数据</strong><br>利用list(range(x,y))生成区间的数<br>然后赋值给x轴，再遍历这个列表并给y轴赋值<br>再利用axis()给坐标</p>
+<pre><code>例子：x_values = list(range(1,10001))
+     y_values = [x**2 for x in x_values]
+
+     plt.axis([0,1100,0,1100000])</code></pre><p><strong>删除数据点的轮廓</strong><br>调用scatter()时传递实参edgecolor=’none’<br><strong>自定义颜色</strong><br>可向scatter()传递参数c=’’<br>也可以使用RGB颜色模式自定义颜色，可传递参数c=(0,0,0) ，并将其设置为一个元组，其中包含三个0~1之间的小数值，它们分别表示红色、绿色和蓝色分量。<br><strong>使用颜色映射</strong><br>利用y值设置颜色c=y-values,cmap=plt.cm.Blues<br>python中所有的颜色映射，<a href="http://matplotlib.org/" target="_blank" rel="noopener">http://matplotlib.org/</a>,单击Examples，向下滚动到Color Examples，再单击colormaps_reference。  </p>
+<h3 id="自动保存图表"><a href="#自动保存图表" class="headerlink" title="自动保存图表"></a>自动保存图表</h3><p>plt.savegfig(‘xxx.png’,bbox_inches=’tight’)<br>第二个实参指定将图表多余的空白区域裁剪掉，保留则省略。</p>
+
+          
+            <div class='article_footer'>
+              
+                
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+
+  
+
+
+              
+            </div>
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-21T16:07:51+08:00">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>更新于：May 21, 2020</p>
+  </a>
+</div>
+
         
       
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>大数据</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/python/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>python</p></a></div>
+
+
+        
+      
+        
+          
+
+        
+      
+        
+          
+  <div class="new-meta-item share -mob-share-list">
+  <div class="-mob-share-list share-body">
     
+      
+        <a class="-mob-share-qq" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://connect.qq.com/widget/shareqq/index.html?url=www.yoursite.com/2020/05/21/Python%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A1%B9%E7%9B%AE/&title=Python数据可视化项目 - Mr.Li's Blog&summary=
+前提：安装matplotlib
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qq.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-qzone" title="" rel="external nofollow noopener noreferrer"
+          
+          href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=www.yoursite.com/2020/05/21/Python%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A1%B9%E7%9B%AE/&title=Python数据可视化项目 - Mr.Li's Blog&summary=
+前提：安装matplotlib
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/qzone.png">
+          
+        </a>
+      
+    
+      
+        <a class="-mob-share-weibo" title="" rel="external nofollow noopener noreferrer"
+          
+          href="http://service.weibo.com/share/share.php?url=www.yoursite.com/2020/05/21/Python%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E9%A1%B9%E7%9B%AE/&title=Python数据可视化项目 - Mr.Li's Blog&summary=
+前提：安装matplotlib
+"
+          
+          >
+          
+            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/logo/128/weibo.png">
+          
+        </a>
+      
+    
+  </div>
+</div>
+
+
+
+        
+      
+    </div>
   </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+            
+              <a class='next' href='/2020/05/14/HTML-CSS%E8%87%AA%E5%AD%A6%E7%AC%94%E8%AE%B0/'>
+                <p class='title'>HTML+CSS自学笔记<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>&emsp;&emsp;前面空了一部分没有做笔记，太懒了，后面补出来。
+strong与b、em与i？&emsp;&emsp;表现形态都是文本加粗和斜体&emsp;&emsp;strong和em是...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
   
-    
-    <!-- 根据主题中的设置决定是否在archive中针对摘要部分的MathJax公式加载mathjax.js文件 -->
-    
-    
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box reveal comments shadow floatable">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 评论</p>
+      
+      
+      
+      
+      
+      
+        <section id="comments">
+          <div id="valine_container" class="valine_thread">
+            <i class="fas fa-cog fa-spin fa-fw fa-2x"></i>
+          </div>
+        </section>
+      
+      
+    </section>
+  </article>
+
 
   
 
 
-    
-  
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'Python数据可视化项目',
+      tools: true
+    }
+  </script>
+
+
 </div>
 <aside class='l_side'>
   
   
-    
-    
-
-<section class="widget blogger shadow floatable desktop mobile">
-  <div class='content'>
-    
-      
-        <a class='avatar flat-box' href='/about/'>
-          <img no-lazy src='https://cdn.jsdelivr.net/gh/wedrio/ImageHosting/wedrio-pic/head.png'/>
-        </a>
-      
-    
-    
-      <div class='text'>
-        
-        
-        
-          <p><span id="jinrishici-sentence">Mr.Li's Blog</span></p>
-          <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-        
-      </div>
-    
-    
-      <div class="social-wrapper">
-        
-          
-        
-          
-        
-          
-            <a href="https://github.com/wedrio"
-              class="social fab fa-github flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-          
-            <a href="https://music.163.com/#/user/home?id=505077828"
-              class="social fas fa-headphones-alt flat-btn"
-              target="_blank"
-              rel="external nofollow noopener noreferrer">
-            </a>
-          
-        
-      </div>
-    
-  </div>
-</section>
-
-  
 
   
     
     
-  
 
-  <section class="widget category shadow floatable desktop">
+
+  <section class="widget toc-wrapper shadow floatable desktop mobile">
     
   <header>
     
-      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分类</span></a>
+      <i class="fas fa-list fa-fw" aria-hidden="true"></i><span class='name'>本文目录</span>
     
   </header>
 
 
     <div class='content'>
-      <ul class="entry navigation">
-        
-          <li><a class="flat-box"
-            title="/categories/python/" href="/categories/python/"
-            id="categoriespython"
-            ><div class='name'>python</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/web%E5%89%8D%E7%AB%AF/" href="/categories/web%E5%89%8D%E7%AB%AF/"
-            id="categorieswebE5898DE7ABAF"
-            ><div class='name'>web前端</div><div class='badge'>(1)</div></a></li>
-        
-          <li><a class="flat-box"
-            title="/categories/%E7%94%9F%E6%B4%BB/" href="/categories/%E7%94%9F%E6%B4%BB/"
-            id="categoriesE7949FE6B4BB"
-            ><div class='name'>生活</div><div class='badge'>(1)</div></a></li>
-        
-      </ul>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#绘制简单的折线图"><span class="toc-text">绘制简单的折线图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用plot-绘制"><span class="toc-text">使用plot()绘制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用scatter-绘制散点图并设置其样式"><span class="toc-text">使用scatter()绘制散点图并设置其样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动保存图表"><span class="toc-text">自动保存图表</span></a></li></ol></li></ol>
     </div>
   </section>
 
-
-  
-
-  
-    
-    
-  
-
-  <section class="widget tagcloud shadow floatable desktop mobile">
-    
-  <header>
-    
-      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>热门标签</span></a>
-    
-  </header>
-
-
-    <div class='content'>
-      <a href="/tags/python/" style="font-size: 14px; color: #999">python</a> <a href="/tags/web/" style="font-size: 14px; color: #999">web</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 14px; color: #999">大数据</a> <a href="/tags/%E9%A1%B5%E9%9D%A2/" style="font-size: 14px; color: #999">页面</a>
-    </div>
-  </section>
-
-
-  
 
   
 
@@ -844,6 +920,60 @@
 
 
 
+
+  
+    
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4/dist/Valine.min.js"></script>
+
+  
+  <script>
+  var GUEST_INFO = ['nick','mail','link'];
+  var meta = 'nick,mail,link'.split(',').filter(function(item){
+    return GUEST_INFO.indexOf(item) > -1
+  });
+  var REQUIRED_FIELDS = ['nick','mail','link'];
+  var requiredFields = 'nick,mail'.split(',').filter(function(item){
+    return REQUIRED_FIELDS.indexOf(item) > -1
+  });
+  var valine = new Valine();
+  function emoji(path, idx, ext) {
+      return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  valine.init({
+    el: '#valine_container',
+    meta: meta,
+    
+    appId: "dogUA2FSKGTo029M1SEwGROT-MdYXbMMI",
+    appKey: "u0NdtQ8nvHoMdJPSYqm1LRxE",
+    placeholder: "快来评论吧~",
+    pageSize:'10',
+    avatar:'robohash',
+    lang:'zh-cn',
+    visitor: 'true',
+    highlight: 'true',
+    mathJax: 'false',
+    enableQQ: 'true',
+    requiredFields: requiredFields,
+    emojiCDN: 'https://cdn.jsdelivr.net/gh/xaoxuu/cdn-assets/emoji/valine/',
+    emojiMaps: emojiMaps
+  })
+  </script>
 
 
 
