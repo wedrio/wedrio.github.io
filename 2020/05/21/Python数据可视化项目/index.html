@@ -410,13 +410,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>530 words</p>
+      <p>1.1k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>2 min</p>
+      <p>4 min</p>
     </a>
   </div>
 
@@ -477,6 +477,51 @@ plt.show()</code></pre><p><img src="https://cdn.jsdelivr.net/gh/wedrio/ImageHost
 
      plt.axis([0,1100,0,1100000])</code></pre><p><strong>删除数据点的轮廓</strong><br>调用scatter()时传递实参edgecolor=’none’<br><strong>自定义颜色</strong><br>可向scatter()传递参数c=’’<br>也可以使用RGB颜色模式自定义颜色，可传递参数c=(0,0,0) ，并将其设置为一个元组，其中包含三个0~1之间的小数值，它们分别表示红色、绿色和蓝色分量。<br><strong>使用颜色映射</strong><br>利用y值设置颜色c=y-values,cmap=plt.cm.Blues<br>python中所有的颜色映射，<a href="http://matplotlib.org/" target="_blank" rel="noopener">http://matplotlib.org/</a>,单击Examples，向下滚动到Color Examples，再单击colormaps_reference。  </p>
 <h3 id="自动保存图表"><a href="#自动保存图表" class="headerlink" title="自动保存图表"></a>自动保存图表</h3><p>plt.savegfig(‘xxx.png’,bbox_inches=’tight’)<br>第二个实参指定将图表多余的空白区域裁剪掉，保留则省略。</p>
+<h2 id="随机漫步"><a href="#随机漫步" class="headerlink" title="随机漫步"></a>随机漫步</h2><h3 id="创建Randomwalk-类"><a href="#创建Randomwalk-类" class="headerlink" title="创建Randomwalk()类"></a>创建Randomwalk()类</h3><p>这个类需要三个属性，随机漫步次数的变量、储存x和y漫步过的点的两个列表。包含两个方法：__init__()和fill_walk()，后者计算随机漫步进过的所有点。</p>
+<h3 id="选择方向"><a href="#选择方向" class="headerlink" title="选择方向"></a>选择方向</h3><p>choice([1,-1])表示向右走1或者向左走-1<br>choice([0,1,2,3,4])选择0~4之间的整数，表示沿指定方向走多远</p>
+<h3 id="绘制随机漫步图"><a href="#绘制随机漫步图" class="headerlink" title="绘制随机漫步图"></a>绘制随机漫步图</h3><pre><code>from random import choice
+import matplotlib.pyplot as plt
+
+class RandomWalk():
+    &quot;&quot;&quot;一个生成随机漫步数据的类&quot;&quot;&quot;
+    def __init__(self, num_points=5000):
+        &quot;&quot;&quot;初始化随机漫步的属性&quot;&quot;&quot;
+        self.num_points = num_points
+        # 所有随机漫步的属性都始于(0,0)
+        self.x_values = [0]
+        self.y_values = [0]
+
+    def fill_walk(self):
+        &quot;&quot;&quot;计算随机漫步包含的所有点&quot;&quot;&quot;
+        # 不断漫步，直到列表达到指定的长度
+        while len(self.x_values) &lt; self.num_points:
+            # 决定前进方向以及沿这个方向前进的距离
+            x_direction = choice([1, -1])
+            x_distance = choice([0, 1, 2, 3, 4])
+            x_step = x_direction * x_distance
+            y_direction = choice([1, -1])
+            y_distance = choice([0, 1, 2, 3, 4])
+            y_step = y_direction * y_distance
+            # 拒绝原地踏步
+            if x_step == 0 and y_step == 0:
+                continue
+            # 计算下一个点的x和y值
+            next_x = self.x_values[-1] + x_step
+            next_y = self.y_values[-1] + y_step
+            self.x_values.append(next_x)
+            self.y_values.append(next_y)
+
+#创建一个RandomWalk实例，并将其包含的点都给绘制出来
+rw = RandomWalk()
+rw.fill_walk()
+plt.scatter(rw.x_values, rw.y_values, s=15)
+plt.show()</code></pre><p><img src="https://cdn.jsdelivr.net/gh/wedrio/ImageHosting/wedrio-pic/choice_1.png" alt></p>
+<h3 id="模拟多次随机漫步"><a href="#模拟多次随机漫步" class="headerlink" title="模拟多次随机漫步"></a>模拟多次随机漫步</h3><p>利用while循环只要程序处于活动状态，就不断地模拟随机漫步，设置一个跳出循环的输入条件。</p>
+<h2 id="设置随机漫步图的样式"><a href="#设置随机漫步图的样式" class="headerlink" title="设置随机漫步图的样式"></a>设置随机漫步图的样式</h2><h3 id="给点着色："><a href="#给点着色：" class="headerlink" title="给点着色："></a>给点着色：</h3><p>&emsp;&emsp;point_numbers = list(range(rw.num_points))<br>&emsp;&emsp;c=point_numbers,cmap=plt.cm.Blues,edgecolor=’none’  </p>
+<h3 id="重新绘制起点和终点："><a href="#重新绘制起点和终点：" class="headerlink" title="重新绘制起点和终点："></a>重新绘制起点和终点：</h3><p>&emsp;&emsp;让起点和终点变得更大，并显示为不同的颜色，突出它们。<br>&emsp;&emsp;plt.scatter(0,0,c=’green’,edgecolor=’none’,s=100)<br>&emsp;&emsp;plt.scatter(rw.x_values[-1],rw.y_values[-1],c=’red’,edgecolors=’none’,s=100)  </p>
+<h3 id="隐藏坐标轴："><a href="#隐藏坐标轴：" class="headerlink" title="隐藏坐标轴："></a>隐藏坐标轴：</h3><p>&emsp;&emsp;plt.axes().get_xaxis().set_visible(False)<br>&emsp;&emsp;plt.axes().get_yaxis().set_visible(False)</p>
+<h3 id="增加点数"><a href="#增加点数" class="headerlink" title="增加点数"></a>增加点数</h3><p>增大num_points的值</p>
+<h3 id="调整尺寸以适合屏幕"><a href="#调整尺寸以适合屏幕" class="headerlink" title="调整尺寸以适合屏幕"></a>调整尺寸以适合屏幕</h3><p>plt.figure(dpi=128,figsize=(10,6))<br>figure()用于指定图表的宽度、高度、分辨率和背景色。如果你知道你屏幕的分辨率你可以用形参dpi向figure传递值。</p>
 
           
             <div class='article_footer'>
@@ -515,10 +560,10 @@ plt.show()</code></pre><p><img src="https://cdn.jsdelivr.net/gh/wedrio/ImageHost
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-21T16:07:51+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-22T15:54:34+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 21, 2020</p>
+    <p>更新于：May 22, 2020</p>
   </a>
 </div>
 
@@ -674,7 +719,7 @@ strong与b、em与i？&emsp;&emsp;表现形态都是文本加粗和斜体&emsp;&
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#绘制简单的折线图"><span class="toc-text">绘制简单的折线图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用plot-绘制"><span class="toc-text">使用plot()绘制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用scatter-绘制散点图并设置其样式"><span class="toc-text">使用scatter()绘制散点图并设置其样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动保存图表"><span class="toc-text">自动保存图表</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#绘制简单的折线图"><span class="toc-text">绘制简单的折线图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用plot-绘制"><span class="toc-text">使用plot()绘制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用scatter-绘制散点图并设置其样式"><span class="toc-text">使用scatter()绘制散点图并设置其样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动保存图表"><span class="toc-text">自动保存图表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#随机漫步"><span class="toc-text">随机漫步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建Randomwalk-类"><span class="toc-text">创建Randomwalk()类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择方向"><span class="toc-text">选择方向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绘制随机漫步图"><span class="toc-text">绘制随机漫步图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模拟多次随机漫步"><span class="toc-text">模拟多次随机漫步</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置随机漫步图的样式"><span class="toc-text">设置随机漫步图的样式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#给点着色："><span class="toc-text">给点着色：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重新绘制起点和终点："><span class="toc-text">重新绘制起点和终点：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐藏坐标轴："><span class="toc-text">隐藏坐标轴：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#增加点数"><span class="toc-text">增加点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调整尺寸以适合屏幕"><span class="toc-text">调整尺寸以适合屏幕</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -758,7 +803,7 @@ strong与b、em与i？&emsp;&emsp;表现形态都是文本加粗和斜体&emsp;&
         <div class='copyright'>
           <span id="sitetime"></span>
           <i class="fas fa-chart-area"></i>
-          <span class="post-count">字数统计：4.6k</span>
+          <span class="post-count">字数统计：5.2k</span>
         <p><a href="https://www.ldlife.top" target="_blank" rel="noopener">Copyright © 2020 Mr. Li</a></p>
 
         </div>
