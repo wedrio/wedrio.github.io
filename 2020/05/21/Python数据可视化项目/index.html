@@ -410,13 +410,13 @@
   <div class="new-meta-item wordcount">
     <a class='notlink'>
       <i class="fas fa-keyboard fa-fw" aria-hidden="true"></i>
-      <p>1.1k words</p>
+      <p>1.6k words</p>
     </a>
   </div>
   <div class="new-meta-item readtime">
     <a class='notlink'>
       <i class="fas fa-hourglass-half fa-fw" aria-hidden="true"></i>
-      <p>4 min</p>
+      <p>7 min</p>
     </a>
   </div>
 
@@ -522,6 +522,85 @@ plt.show()</code></pre><p><img src="https://cdn.jsdelivr.net/gh/wedrio/ImageHost
 <h3 id="隐藏坐标轴："><a href="#隐藏坐标轴：" class="headerlink" title="隐藏坐标轴："></a>隐藏坐标轴：</h3><p>&emsp;&emsp;plt.axes().get_xaxis().set_visible(False)<br>&emsp;&emsp;plt.axes().get_yaxis().set_visible(False)</p>
 <h3 id="增加点数"><a href="#增加点数" class="headerlink" title="增加点数"></a>增加点数</h3><p>增大num_points的值</p>
 <h3 id="调整尺寸以适合屏幕"><a href="#调整尺寸以适合屏幕" class="headerlink" title="调整尺寸以适合屏幕"></a>调整尺寸以适合屏幕</h3><p>plt.figure(dpi=128,figsize=(10,6))<br>figure()用于指定图表的宽度、高度、分辨率和背景色。如果你知道你屏幕的分辨率你可以用形参dpi向figure传递值。</p>
+<h2 id="使用Pygal模拟掷骰子"><a href="#使用Pygal模拟掷骰子" class="headerlink" title="使用Pygal模拟掷骰子"></a>使用Pygal模拟掷骰子</h2><blockquote>
+<p>安装Pygal</p>
+</blockquote>
+<h3 id="Pygal画廊"><a href="#Pygal画廊" class="headerlink" title="Pygal画廊"></a>Pygal画廊</h3><p>查看图表类型画廊：访问<a href="http://www.pygal.org/" target="_blank" rel="noopener">http://www.pygal.org/</a> ，单击Documentation，再单击Chart types。每个示例都包含源代码，让你知道这些图表是如何 生成的。 </p>
+<h3 id="创建Die类"><a href="#创建Die类" class="headerlink" title="创建Die类"></a>创建Die类</h3><p>die.py  </p>
+<pre><code>from random import randint
+class Die():
+    &quot;&quot;&quot;表示一个骰子的类&quot;&quot;&quot;
+    def __init__(self,num_sides=6):
+        self.num_sides=num_sides
+    def roll(self):
+        &quot;&quot;&quot;返回一个位于1和骰子面数之间的随机值&quot;&quot;&quot;
+        return randint(1,self.num_sides)</code></pre><h3 id="掷骰子"><a href="#掷骰子" class="headerlink" title="掷骰子"></a>掷骰子</h3><p>die_visual.py</p>
+<pre><code>from die import Die
+#创建一个六面骰
+die=Die()
+#掷几次骰子，并将结果存储在一个列表中
+results=[]
+for roll_num in range(100):
+    result = die.roll()
+    results.append(result)
+print(results)</code></pre><h3 id="分析结果"><a href="#分析结果" class="headerlink" title="分析结果"></a>分析结果</h3><p>die_visual.py</p>
+<pre><code>--snip--
+# 掷几次骰子，并将结果存储在一个列表中
+results = []
+for roll_num in range(1000):
+    result=die.roll()
+    results.append(result)
+# 分析结果
+frequencies=[]
+for value in range(1,die.num_sides+1):
+    frequency=results.count(value)
+    frequencies.append(frequency)
+print(frequencies)</code></pre><h3 id="绘制直方图"><a href="#绘制直方图" class="headerlink" title="绘制直方图"></a>绘制直方图</h3><p>die_visual.py</p>
+<pre><code>import pygal
+--snip--
+# 分析结果
+frequencies = []
+for value in range(1,die.num_sides+1):
+    frequency=results.count(value)
+    frequencies.append(frequency)
+# 对结果进行可视化
+hist = pygal.Bar()
+hist.title = &quot;Result of rolling one D6 1000 times.&quot;
+hist.x_labels=[&apos;1&apos;,&apos;2&apos;,&apos;3&apos;,&apos;4&apos;,&apos;5&apos;,&apos;6&apos;]
+hist.x_title=&quot;Result&quot;
+hist.y_title=&quot;Frequency of Result&quot;
+hist.add(&apos;D6&apos;,frequencies)
+hist.render_to_file(&apos;die_visual.svg&apos;)</code></pre><p>用web打开跟此文件同目录下的svg文件<br><img src="https://cdn.jsdelivr.net/gh/wedrio/ImageHosting/wedrio-pic/pygal_01.png" alt></p>
+<h3 id="同时掷两个骰子"><a href="#同时掷两个骰子" class="headerlink" title="同时掷两个骰子"></a>同时掷两个骰子</h3><p>dice_visual.py</p>
+<pre><code>import pygal
+from die import Die
+
+#创建两个D6骰子
+die_1=Die()
+die_2=Die()
+
+#掷骰子多次，并将结果存储到一个列表中
+results=[]
+for roll_num in range(1000):
+    result = die_.roll() + die_2.roll()
+    results.append(result)
+
+#分析结果
+frequencies=[]
+max_result=die_1.num_sides+die_2.num_sides
+for value in range(2,max_result+1):
+    frequemcy = results.count(value)
+    frequencies.append(frequency)
+
+#可视化结果
+hist=pygal.Bar()
+
+hist.title = &quot;Result of rolling two D6 1000 times.&quot;
+hist.x_labels=[&apos;1&apos;,&apos;2&apos;,&apos;3&apos;,&apos;4&apos;,&apos;5&apos;,&apos;6&apos;,&apos;7&apos;,&apos;8&apos;,&apos;9&apos;,&apos;10&apos;,&apos;11&apos;,&apos;12&apos;]
+hist.x_title=&quot;Result&quot;
+hist.y_title=&quot;Frequency of Result&quot;
+hist.add(&apos;D6+D6&apos;,frequencies)
+hist.render_to_file(&apos;dice_visual.svg&apos;)</code></pre><h3 id="同时掷两个不同面骰子"><a href="#同时掷两个不同面骰子" class="headerlink" title="同时掷两个不同面骰子"></a>同时掷两个不同面骰子</h3><p>思路：需要给Die()传入参数，然后修改x_labels的值。</p>
 
           
             <div class='article_footer'>
@@ -560,10 +639,10 @@ plt.show()</code></pre><p><img src="https://cdn.jsdelivr.net/gh/wedrio/ImageHost
     <div class='new-meta-box'>
       
         
-          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-22T15:54:34+08:00">
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-05-28T11:15:10+08:00">
   <a class='notlink'>
     <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
-    <p>更新于：May 22, 2020</p>
+    <p>更新于：May 28, 2020</p>
   </a>
 </div>
 
@@ -719,7 +798,7 @@ strong与b、em与i？&emsp;&emsp;表现形态都是文本加粗和斜体&emsp;&
 
 
     <div class='content'>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#绘制简单的折线图"><span class="toc-text">绘制简单的折线图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用plot-绘制"><span class="toc-text">使用plot()绘制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用scatter-绘制散点图并设置其样式"><span class="toc-text">使用scatter()绘制散点图并设置其样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动保存图表"><span class="toc-text">自动保存图表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#随机漫步"><span class="toc-text">随机漫步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建Randomwalk-类"><span class="toc-text">创建Randomwalk()类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择方向"><span class="toc-text">选择方向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绘制随机漫步图"><span class="toc-text">绘制随机漫步图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模拟多次随机漫步"><span class="toc-text">模拟多次随机漫步</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置随机漫步图的样式"><span class="toc-text">设置随机漫步图的样式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#给点着色："><span class="toc-text">给点着色：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重新绘制起点和终点："><span class="toc-text">重新绘制起点和终点：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐藏坐标轴："><span class="toc-text">隐藏坐标轴：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#增加点数"><span class="toc-text">增加点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调整尺寸以适合屏幕"><span class="toc-text">调整尺寸以适合屏幕</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#绘制简单的折线图"><span class="toc-text">绘制简单的折线图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用plot-绘制"><span class="toc-text">使用plot()绘制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用scatter-绘制散点图并设置其样式"><span class="toc-text">使用scatter()绘制散点图并设置其样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动保存图表"><span class="toc-text">自动保存图表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#随机漫步"><span class="toc-text">随机漫步</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建Randomwalk-类"><span class="toc-text">创建Randomwalk()类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择方向"><span class="toc-text">选择方向</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绘制随机漫步图"><span class="toc-text">绘制随机漫步图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模拟多次随机漫步"><span class="toc-text">模拟多次随机漫步</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置随机漫步图的样式"><span class="toc-text">设置随机漫步图的样式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#给点着色："><span class="toc-text">给点着色：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重新绘制起点和终点："><span class="toc-text">重新绘制起点和终点：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#隐藏坐标轴："><span class="toc-text">隐藏坐标轴：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#增加点数"><span class="toc-text">增加点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调整尺寸以适合屏幕"><span class="toc-text">调整尺寸以适合屏幕</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用Pygal模拟掷骰子"><span class="toc-text">使用Pygal模拟掷骰子</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Pygal画廊"><span class="toc-text">Pygal画廊</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建Die类"><span class="toc-text">创建Die类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#掷骰子"><span class="toc-text">掷骰子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分析结果"><span class="toc-text">分析结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绘制直方图"><span class="toc-text">绘制直方图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同时掷两个骰子"><span class="toc-text">同时掷两个骰子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同时掷两个不同面骰子"><span class="toc-text">同时掷两个不同面骰子</span></a></li></ol></li></ol>
     </div>
   </section>
 
@@ -803,7 +882,7 @@ strong与b、em与i？&emsp;&emsp;表现形态都是文本加粗和斜体&emsp;&
         <div class='copyright'>
           <span id="sitetime"></span>
           <i class="fas fa-chart-area"></i>
-          <span class="post-count">字数统计：5.2k</span>
+          <span class="post-count">字数统计：5.7k</span>
         <p><a href="https://www.ldlife.top" target="_blank" rel="noopener">Copyright © 2020 Mr. Li</a></p>
 
         </div>
