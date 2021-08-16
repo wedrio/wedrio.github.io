@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!--单击显示文字-->
-<script type="text/javascript" src="../source/js/click_show_text.js"></script>
+  <!--浏览器搞笑标题-->
+<script type="text/javascript" src="../source/js/FunnyTitle.js"></script>
     <head hexo-theme='https://github.com/volantis-x/hexo-theme-volantis/tree/5.0.0.alpha.0'>
   <meta name="generator" content="Hexo 5.4.0">
   <meta charset="utf-8">
@@ -22,7 +22,7 @@
   <meta content="Frank&#39;s blog" name="apple-mobile-web-app-title">
   <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style">
   <meta content="telephone=no" name="format-detection">
-  <link rel="preload" href="/css/style.css?time=1628996983808" as="style">
+  <link rel="preload" href="/css/style.css?time=1629103802669" as="style">
   <!-- 页面元数据 -->
   <title>Hello World - Frank's blog</title>
   <meta name="keywords" content="null">
@@ -164,6 +164,7 @@ html >::-webkit-scrollbar-thumb:hover {
   background: #ff5722;
 }
 body {
+  cursor: url("https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@2.1.6/images/mouse.cur"), auto;
   background-color: var(--color-site-body);
   text-rendering: optimizelegibility;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -1926,8 +1927,8 @@ ul.list-v >li>a:hover {
 }
 
   </style>
-  <link rel="stylesheet" href="/css/style.css?time=1628996983808" media="print" onload="this.media='all';this.onload=null">
-  <noscript><link rel="stylesheet" href="/css/style.css?time=1628996983808"></noscript>
+  <link rel="stylesheet" href="/css/style.css?time=1629103802669" media="print" onload="this.media='all';this.onload=null">
+  <noscript><link rel="stylesheet" href="/css/style.css?time=1629103802669"></noscript>
   
 <script>
 if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
@@ -2225,6 +2226,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <!-- Custom Files header begin -->
       
       <!-- Custom Files header end -->
+      
 		</div>
 	</div>
   </div>
@@ -2237,7 +2239,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
       <!-- see: /layout/_partial/scripts/_ctrl/coverCtrl.ejs -->
         <div id="none" class='cover-wrapper post search' style="display: none;">
           
-            <div class='cover-bg lazyload placeholder' data-bg="https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/020.jpg"></div>
+            <div id="parallax-window"></div>
           
           <div class='cover-body'>
   <div class='top'>
@@ -2613,6 +2615,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
         </div>
         
+
   
   <footer class="footer clearfix">
     <br><br>
@@ -3101,7 +3104,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
       volantis.APlayerController = {};
     
-    volantis.js('/js/rightMenu.js?time=1628996983808')
+    volantis.js('/js/rightMenu.js?time=1629103802669')
   </script>
 
 
@@ -3115,19 +3118,19 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
     
       const sites_api = document.getElementById('sites-api');
       if (sites_api != undefined && typeof SitesJS === 'undefined') {
-        volantis.js("/js/plugins/sites.js?time=1628996983808")
+        volantis.js("/js/plugins/sites.js?time=1629103802669")
       }
     
     
       const friends_api = document.getElementById('friends-api');
       if (friends_api != undefined && typeof FriendsJS === 'undefined') {
-        volantis.js("/js/plugins/friends.js?time=1628996983808")
+        volantis.js("/js/plugins/friends.js?time=1629103802669")
       }
     
     
       const contributors_api = document.getElementById('contributors-api');
       if (contributors_api != undefined && typeof ContributorsJS === 'undefined') {
-        volantis.js("/js/plugins/contributors.js?time=1628996983808")
+        volantis.js("/js/plugins/contributors.js?time=1629103802669")
       }
     
   };
@@ -3247,7 +3250,7 @@ if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMo
 
 
 
-<script src="/js/app.js?time=1628996983808.js"></script>
+<script src="/js/app.js?time=1629103802669.js"></script>
 
 
 <!-- optional -->
@@ -3260,7 +3263,7 @@ function loadSearchScript(){
   return  volantis.import.jQuery().then(()=>{
     return new Promise((resolve) => {
       // see: layout/_partial/scripts/cdnCtrl.ejs
-      volantis.js('/js/search/hexo.js?time=1628996983808').then(()=>{ // 此处依赖JQ
+      volantis.js('/js/search/hexo.js?time=1629103802669').then(()=>{ // 此处依赖JQ
         setSearchService()
         resolve()
       })
@@ -3533,6 +3536,53 @@ function setSearchService() {
 
 
 
+  
+<script>
+  var imgs=["https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/001.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/002.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/003.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/004.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/005.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/006.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/012.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/016.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/019.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/025.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/033.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/034.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/035.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/038.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/039.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/042.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/046.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/051.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/052.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/054.jpg", "https://cdn.jsdelivr.net/gh/volantis-x/cdn-wallpaper-minimalist/2020/056.jpg"];
+  var index=0;
+  
+      function shuffle(arr){
+        /*From countercurrent-time*/
+        var n = arr.length;
+        while(n--) {
+          var index = Math.floor(Math.random() * n);
+          var temp = arr[index];
+          arr[index] = arr[n];
+          arr[n] = temp;
+        }
+      }
+      shuffle(imgs);
+  
+
+  function parallax(){
+    let ParallaxWindow = document.querySelector("#parallax-window");
+    
+    Parallax.window = ParallaxWindow;
+    Parallax.options.fade = 1500;
+    next_parallax();
+    Parallax.init();
+    if (imgs.length>1) {
+      let IntervalParallax = setInterval(function () {
+        next_parallax();
+      }, '10000');
+    }
+  }
+
+  function next_parallax() {
+    if (imgs.length>=1) {
+      Parallax.options.src = imgs[index % imgs.length];
+      Parallax.start();
+      index++;
+      fetch(imgs[index % imgs.length] +"?t=" + new Date().getTime());
+    }
+  }
+  volantis.js('/js/parallax.js?time=1629103802669').then(()=>{
+    parallax()
+  })
+  volantis.pjax.push(next_parallax);
+</script>
+
+
 
 
 
@@ -3542,8 +3592,8 @@ function setSearchService() {
   <script>
   volantis.message = (title, message, icon = 'fas fa-info-circle light-blue', time = '5000', position = 'topRight', done = null) => {
     if (typeof iziToast == "undefined") {
-      volantis.css('/css/message.css?time=1628996983808')
-      volantis.js('/js/message.js?time=1628996983808', () => {
+      volantis.css('/css/message.css?time=1629103802669')
+      volantis.js('/js/message.js?time=1629103802669', () => {
         tozashMessage(title, message, icon, time, position, done);
       });
     } else {
@@ -3576,8 +3626,8 @@ function setSearchService() {
 
   volantis.question = (title, message, success = null, cancel = null, done = null, icon = 'fas fa-question-circle light-blue', time = '20000') => {
     if (typeof iziToast == "undefined") {
-      volantis.css('/css/message.css?time=1628996983808')
-      volantis.js('/js/message.js?time=1628996983808', () => {
+      volantis.css('/css/message.css?time=1629103802669')
+      volantis.js('/js/message.js?time=1629103802669', () => {
         tozashQuestion(title, message, icon , time, success, cancel, done);
       });
     } else {
@@ -3787,3 +3837,4 @@ function setSearchService() {
   <!-- Custom Files bodyEnd end-->
   </body>
 </html>
+
